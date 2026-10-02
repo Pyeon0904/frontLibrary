@@ -8,7 +8,7 @@ reviews:
     base_branches:
       - master
       - develop
-      - feature/**
+      - feature/.*
   profile: assertive
 
   # 리뷰 불필요 파일 제외 (아래는 예시)
