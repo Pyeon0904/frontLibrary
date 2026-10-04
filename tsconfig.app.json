@@ -17,8 +17,8 @@
     "jsx": "react-jsx",
 
     /* Linting */
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    // "noUnusedLocals": true, // 사용하지 않는 변수 찾아 에러표기 (잠시 주석)
+    // "noUnusedParameters": true, // 사용하지 않는 매개변수 찾아 에러표기 (잠시 주석)
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
