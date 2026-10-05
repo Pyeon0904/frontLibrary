@@ -1,8 +1,11 @@
+import {Route, Routes} from "react-router";
+import TodoListPage from "./pages/todo-list-page.tsx";
+
 function App() {
   return (
-    <>
-      <h2 className="text-2xl font-bold underline">test</h2>
-    </>
+    <Routes>
+      <Route path="/todolist" element={<TodoListPage />} />
+    </Routes>
   );
 }
 
