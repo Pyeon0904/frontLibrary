@@ -20,12 +20,12 @@
     // "noUnusedLocals": true, // 사용하지 않는 변수 찾아 에러표기 (잠시 주석)
     // "noUnusedParameters": true, // 사용하지 않는 매개변수 찾아 에러표기 (잠시 주석)
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    // shadcn UI 선제작업
+    // "baseUrl": ".", // TypeScript 버전이 올라가면서 baseUrl 옵션이 deprecated(사용 중단 예정) 처리?
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src"],
-  // shadcn UI 선제작업
-  "baseUrl": ".",
-  "paths": {
-    "@/*": ["./src/*"]
-  }
+  "include": ["src"]
 }
