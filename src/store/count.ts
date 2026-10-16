@@ -1,26 +1,44 @@
 import { create } from "zustand";
-import { combine, subscribeWithSelector } from "zustand/middleware";
+import { combine, createJSONStorage, persist, subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 export const useCountStore = create(
-  // subscribeWithSelector 미들웨어 : 셀렉터 함수를 통해서 store의 특정 값 구독 => 해당 값이 변경될 때마다 어떤 기능 추가 수행
-  subscribeWithSelector(
-    immer(
-      combine({ count: 0 }, (set, get) => ({
-        actions: {
-          increaseOne: () => {
-            set((state) => {
-              state.count += 1;
-            });
+  // persist 미들웨어 : 현재 store 값을 로컬 스토리지 or 세션 스토리지에 보관해주는 미들웨어
+  persist(
+    // subscribeWithSelector 미들웨어 : 셀렉터 함수를 통해서 store의 특정 값 구독 => 해당 값이 변경될 때마다 어떤 기능 추가 수행
+    subscribeWithSelector(
+      immer(
+        combine({ count: 0 }, (set, get) => ({
+          actions: {
+            increaseOne: () => {
+              set((state) => {
+                state.count += 1;
+              });
+            },
+            decreaseOne: () => {
+              set((state) => {
+                state.count -= 1;
+              });
+            },
           },
-          decreaseOne: () => {
-            set((state) => {
-              state.count -= 1;
-            });
-          },
-        },
-      })),
+        })),
+      ),
     ),
+    // persist 미들웨어의 두번째 인수 : 객체형태의 옵션
+    {
+      name: "countStore", // 개발자도구 > application > storage > local storage 에 저장될 이름
+      // partialize : actions 함수 제외 일부만 보관되게 하기 위함
+      partialize: (store) => ({
+        count: store.count, // count값만 보관하게 partialize
+      }),
+      // storage : 로컬 스토리지 대신 세션 스토리지에 데이터를 보관하도록 설정
+      // => createJSONStorage 를 import 해줘야함
+      storage: createJSONStorage(() => sessionStorage), // createJSONStorage 함수 불러와서 콜백함수로 sessionStorage를 반환하도록
+    },
+    // 로컬 스토리지 들어가보면, actions에는 빈객체임을 확인할 수 있다.
+    // 그 이유는, 로컬 스토리지에 값을 보관할 때 JSON 형태로 파싱해서 보관하는데, JS함수는 JSON으로 파싱이 안됨(실행컨텍스트, 스코프체인 등 때문에)
+    // => 문제 : Zustand의 persist 미들웨어는 앱을 새로고침해도 값을 다시 불러와서 적용시켜주는데 (예를들어 새로고침해서 0이 되어야하는데도 1이 유지되어 초기화됨 + 동작 안함)
+    // => actions 함수가 비어있기에 => 원래 존재하던 increase나 decrease 같은 함수들이 사라지게 됨
   ),
 );
 
