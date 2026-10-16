@@ -1,7 +1,7 @@
-import {create} from "zustand";
-import {immer} from "zustand/middleware/immer";
-import {combine} from "zustand/middleware";
-import type {Todo} from "../types.ts"; // 1. store를 생성해주기 위해서 use~Store를 만들어주는데,
+import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
+import { combine } from "zustand/middleware";
+import type { Todo } from "../types.ts"; // 1. store를 생성해주기 위해서 use~Store를 만들어주는데,
 // 1. store를 생성해주기 위해서 use~Store를 만들어주는데,
 // - create 메서드 호출
 // - immer() 미들웨어 : 불변성 관리
