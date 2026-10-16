@@ -22,7 +22,7 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     // shadcn UI 선제작업
-    "baseUrl": ".",
+    // "baseUrl": ".", // TypeScript 버전이 올라가면서 baseUrl 옵션이 deprecated(사용 중단 예정) 처리?
     "paths": {
       "@/*": ["./src/*"]
     }
