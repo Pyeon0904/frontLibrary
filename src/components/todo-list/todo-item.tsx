@@ -1,6 +1,6 @@
-import { Button } from "../ui/button.tsx";
-import { useDeleteTodo } from "../../store/todos.ts";
-import { Link } from "react-router";
+import {Button} from "../ui/button.tsx";
+import {Link} from "react-router";
+import {useDeleteTodo} from "@/store/todos.ts";
 
 export default function TodoItem({
   id,
