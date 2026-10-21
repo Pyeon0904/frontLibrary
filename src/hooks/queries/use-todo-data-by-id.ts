@@ -1,11 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchTodoById } from "@/api/fetch-todo-by-id.ts";
+import {useQuery} from "@tanstack/react-query";
+import {fetchTodoById} from "@/api/fetch-todo-by-id.ts";
+import {QUERY_KEYS} from "@/lib/constants.ts";
 
 export function useTodoDataById(id: string) {
   return useQuery({
     // queryFn: fetchTodoById, // 어떤 아이디를 전달할지 id도 넘겨줘야하기에 함수 자체를 넘기지 말고
     queryFn: () => fetchTodoById(id), // 화살표 함수로 fetchTodoById 함수 호출하면서 id 값을 전달
-    queryKey: ["todos", id], // 투두 데이터이니까 배열 ["todos"]에 현재 조회하려는 아이템의 id
+    queryKey: QUERY_KEYS.todo.detail(id), // 투두 데이터이니까 배열 ["todos"]에 현재 조회하려는 아이템의 id
     // 그래야 아이템별로 cache 데이터를 따로 보관할 수 있다.
 
     // [ 추가옵션 ]
