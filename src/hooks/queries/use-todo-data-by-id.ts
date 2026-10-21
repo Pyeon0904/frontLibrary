@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchTodoById } from "@/api/fetch-todo-by-id.ts";
 
-export function useTodoDataById(id: number) {
+export function useTodoDataById(id: string) {
   return useQuery({
     // queryFn: fetchTodoById, // 어떤 아이디를 전달할지 id도 넘겨줘야하기에 함수 자체를 넘기지 말고
     queryFn: () => fetchTodoById(id), // 화살표 함수로 fetchTodoById 함수 호출하면서 id 값을 전달

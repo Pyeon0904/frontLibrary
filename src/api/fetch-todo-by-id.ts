@@ -2,7 +2,7 @@ import { API_URL } from "@/lib/constants.ts";
 import type { Todo } from "@/types.ts";
 
 // 서버로부터 불러올 투두아이템dml id를 number 타입의 매개변수로 받아와서
-export async function fetchTodoById(id: number) {
+export async function fetchTodoById(id: string) {
   const response = await fetch(`${API_URL}/todos/${id}`);
 
   // response.ok가 false라면,
