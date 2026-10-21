@@ -1,12 +1,12 @@
-import {Button} from "../ui/button.tsx";
-import {Link} from "react-router";
-import {useDeleteTodo} from "@/store/todos.ts";
+import { Button } from "../ui/button.tsx";
+import { Link } from "react-router";
+import { useDeleteTodo } from "@/store/todos.ts";
 
 export default function TodoItem({
   id,
   content,
 }: {
-  id: number;
+  id: string;
   content: string;
 }) {
   const deleteTodos = useDeleteTodo();

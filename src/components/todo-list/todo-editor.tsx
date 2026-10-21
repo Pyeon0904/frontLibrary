@@ -1,15 +1,18 @@
 import { Input } from "../ui/input.tsx";
 import { Button } from "../ui/button.tsx";
 import { useState } from "react";
-import { useCreateTodo } from "../../store/todos.ts";
+import { useCreateTodoMutation } from "@/api/mutation/use-create-todo-mutation.ts";
 
 export default function TodoEditor() {
-  const createTodo = useCreateTodo();
+  // mutation 호출
+  const { mutate, isPending } = useCreateTodoMutation();
+
   const [content, setContent] = useState("");
 
   const handleAddClick = () => {
     if (content.trim() === "") return; // trim() 메서드로 공백을 다 제거해본 결과가 빈 문자열일 때, return
-    createTodo(content); // createTodo 액션함수를 호출하기 위해 hook을 호출
+    // 조건절 다음에 mutate 사용
+    mutate(content);
     setContent(""); // 투두아이템 추가 후 입력값 비우기
   };
 
@@ -22,7 +25,9 @@ export default function TodoEditor() {
         onChange={(e) => setContent(e.target.value)}
         placeholder="새로운 할 일을 입력하세요.."
       />
-      <Button onClick={handleAddClick}>추가</Button>
+      <Button disabled={isPending} onClick={handleAddClick}>
+        추가
+      </Button>
     </div>
   );
 }

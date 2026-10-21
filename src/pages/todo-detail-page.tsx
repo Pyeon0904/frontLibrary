@@ -10,7 +10,7 @@ export default function TodoDetailPage() {
   const id = params.id; // [2]. 현재 URL 파라미터의 id값을 꺼내와 id변수에 넣어준다.
 
   // [3]. 해당하는 id 값을 갖는 투두아이템의 데이터를 서버로부터 불러오기 (만든 hook 갖다 쓰기)
-  const { data, isLoading, error } = useTodoDataById(Number(id)); // 매개변수 1개 필요하고 id 를 넣어줬음 => Number 형변환을 해줌
+  const { data, isLoading, error } = useTodoDataById(String(id)); // 매개변수 1개 필요하고 id 를 넣어줬음 => Number 형변환을 해줌
 
   if (isLoading) return <div>로딩 중입니다..</div>;
   if (error || !data) return <div>오류가 발생했습니다.</div>;
