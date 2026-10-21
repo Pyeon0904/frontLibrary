@@ -1,7 +1,7 @@
 import { Input } from "../ui/input.tsx";
 import { Button } from "../ui/button.tsx";
 import { useState } from "react";
-import { useCreateTodoMutation } from "@/api/mutation/use-create-todo-mutation.ts";
+import { useCreateTodoMutation } from "@/hooks/mutations/use-create-todo-mutation.ts";
 
 export default function TodoEditor() {
   // mutation 호출
