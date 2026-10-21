@@ -31,12 +31,12 @@ const useTodosStore = create(
             state.todos.push({
               // push() 메서드 등으로 직접 변경이 가능한 이유는 => "불변성 관리"를 도와주는 "immer 미들웨어" 덕분
               // id와 content가 있을 것을 예상해 작성해줬기에
-              id: new Date().getTime(), // 임시
+              id: `${new Date().getTime()}`, // 임시
               content: content, // 매개변수로 받은 content 사용
             });
           });
         },
-        deleteTodo: (targetId: number) => {
+        deleteTodo: (targetId: string) => {
           // 현재 삭제하고 싶은 투두아이템의 아이디를 'targetID'라는 number 타입의 매개변수로 받아와서
           set((state) => {
             state.todos = state.todos.filter((todo) => todo.id !== targetId);
