@@ -6,24 +6,9 @@
       "isDone": true
     },
     {
-      "id": "2",
-      "content": "Todo 2",
-      "isDone": true
-    },
-    {
-      "id": "3",
-      "content": "Todo 3",
-      "isDone": false
-    },
-    {
       "content": "123",
       "isDone": false,
-      "id": "o2_wJ_fop20"
-    },
-    {
-      "content": "캐시무효화",
-      "isDone": false,
-      "id": "dlU5WlmH16U"
+      "id": "RL3OJdYyurE"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
