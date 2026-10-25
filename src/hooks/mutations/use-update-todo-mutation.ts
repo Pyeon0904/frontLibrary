@@ -64,5 +64,12 @@ export function useUpdateTodoMutation() {
         );
       }
     },
+    // 3. onSettled (요청이 종료되었을 때 호출되는 이벤트 핸들러)
+    // 낙관적 업데이트 데이터와 실제 백엔드 서버 수정 데이터가 달라지는 때
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.todo.list,
+      });
+    },
   });
 }
