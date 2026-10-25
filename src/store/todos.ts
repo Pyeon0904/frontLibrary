@@ -33,6 +33,7 @@ const useTodosStore = create(
               // id와 content가 있을 것을 예상해 작성해줬기에
               id: `${new Date().getTime()}`, // 임시
               content: content, // 매개변수로 받은 content 사용
+              isDone: false,
             });
           });
         },
