@@ -1,7 +1,7 @@
 import React from "react";
 import TodoEditor from "../components/todo-list/todo-editor.tsx";
-import TodoItem from "../components/todo-list/todo-item.tsx";
 import { useTodosData } from "@/hooks/queries/use-todos-data.ts";
+import TodoItem from "@/components/todo-list/todo-item.tsx";
 
 export default function TodoListPage() {
   // (1) dummy 제거 후 todos 호출
@@ -10,7 +10,7 @@ export default function TodoListPage() {
 
   // (TQ2)useQuery 사용
   const {
-    data: todos, // 정상적으로 불러와졌을 때 사용할 data 명칭
+    data: todoIds, // 이젠 정규화로 id 값만 담고 있기에
     isLoading,
     error,
   } = useTodosData(); // 분리해서 커스텀 훅만 불러오기
@@ -25,9 +25,9 @@ export default function TodoListPage() {
       <div className="flex flex-col gap-5 p-5">
         <h1 className="text-2xl font-bold">TodoList</h1>
         <TodoEditor />
-        {/* todos. 점표기법으로 하면 에러가 나는 이유 : undefined 가능성 제거해줘야함*/}
-        {todos?.map((todo) => (
-          <TodoItem key={todo.id} {...todo} />
+        {/* 이젠 todoIds 배열을 활용해서 map 메서드로 id 값들을 하나씩 순회 */}
+        {todoIds?.map((id) => (
+          <TodoItem key={id} id={id} />
         ))}
       </div>
     </>
